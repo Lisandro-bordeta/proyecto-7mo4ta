@@ -1,0 +1,103 @@
+/* Importa la fuente Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Estilos globales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(-45deg, #8823C2, #A6317B, #8823C2, #A6317B);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+    min-height: 100vh;
+    color: #fff;
+}
+/* Botones con degradado */
+.btn-degrade {
+    background: linear-gradient(to right, #8823C2, #A6317B);
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-degrade:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+
+/* Estilo de los cards de productos */
+.card-product {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card-product:hover {
+    transform: translateY(-5px);
+}
+
+.card-product img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card-title, .card-text {
+    color: #fff;
+}
+
+.btn-comprar {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-comprar:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* Estilos para los botones de marca */
+.btn-marca {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 20px;
+    transition: transform 0.2s ease;
+}
+
+.btn-marca:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para el filtro (envío, llega hoy) */
+.filter-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1rem;
+}
+
+/* Estilo para los inputs de pago */
+.payment-input-group {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.payment-input-group label {
+    font-weight: bold;
+}
