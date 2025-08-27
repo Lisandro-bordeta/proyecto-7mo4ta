@@ -2,14 +2,22 @@
   "name": "supabasa",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/Lisandro-bordeta/proyecto-7mo4ta#readme",
+  "bugs": {
+    "url": "https://github.com/Lisandro-bordeta/proyecto-7mo4ta/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lisandro-bordeta/proyecto-7mo4ta.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
   "dependencies": {
     "@supabase/supabase-js": "^2.56.0",
     "dotenv": "^17.2.1"
