@@ -35,9 +35,7 @@ Array.from(forms).forEach(form => {
       lista.innerHTML = '';
 
       data.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = JSON.stringify(item); 
-        lista.appendChild(li);
+        console.log(item);
         // Agregarle estilo
       });
 

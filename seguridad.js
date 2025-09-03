@@ -34,7 +34,7 @@ export async function administrador() {
     return true;
 }
 
-
+/*
 export const tablas_visibles = [
     tabla = {
         campo,
@@ -43,3 +43,4 @@ export const tablas_visibles = [
     }
 ];
 
+*/

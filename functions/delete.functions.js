@@ -1,18 +1,20 @@
 import { supabase } from '../supabaseClient.js';
-import { verificacion } from '../seguridad.js';
+import { administrador } from '../seguridad.js';
 
 const forms = document.getElementsByClassName('form-eliminar');
 
 Array.from(forms).forEach(form => {
-  const mensajeDiv = form.querySelector('.mensaje'); // mensaje dentro del formulario
+  const mensajeDiv = form.querySelector('.mensaje');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    verificacion();
+
+    const autorizado = await administrador();
+    if (!autorizado) return;
 
     const datos = Object.fromEntries(new FormData(form).entries());
 
-    // Validación básica
+    // Validación
     if (!datos.table?.trim() || !datos.id?.trim()) {
       mensajeDiv.textContent = 'Debes proporcionar el nombre de la tabla y un ID válido.';
       return;
@@ -23,7 +25,7 @@ Array.from(forms).forEach(form => {
         .from(datos.table)
         .delete()
         .eq('id', datos.id)
-        .select(); // opcional: para ver el dato eliminado
+        .select();
 
       if (error) {
         mensajeDiv.textContent = 'Error al borrar registro: ' + error.message;
