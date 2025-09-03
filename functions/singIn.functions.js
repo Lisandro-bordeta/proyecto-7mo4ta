@@ -1,24 +1,36 @@
-import { supabase } from '../supabaseClient.js'
+import { supabase } from '../supabaseClient.js';
 
 const forms = document.getElementsByClassName('form-login');
-const mensajeDiv = document.getElementById('mensaje');
 
 Array.from(forms).forEach(form => {
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+  const mensajeDiv = form.querySelector('.mensaje');
 
-        const datos = Object.fromEntries(new FormData(form).entries());
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        const { data, error } = await supabase.auth.signInWithPassword({
+    const datos = Object.fromEntries(new FormData(form).entries());
+
+    // Validar campos vacíos
+    if (!datos.email?.trim() || !datos.password?.trim()) {
+      mensajeDiv.textContent = 'El correo y la contraseña son obligatorios.';
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: datos.email,
         password: datos.password
-        });
+      });
 
-        if (error) {
+      if (error) {
         mensajeDiv.textContent = 'Error al iniciar sesión: ' + error.message;
-        } else {
+      } else {
         mensajeDiv.textContent = 'Sesión iniciada correctamente!';
         console.log('Usuario:', data.user);
-        }
-    });
-})
+        form.reset();
+      }
+    } catch (error) {
+      mensajeDiv.textContent = 'Error inesperado: ' + error.message;
+    }
+  });
+});

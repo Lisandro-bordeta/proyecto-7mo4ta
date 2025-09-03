@@ -1,29 +1,50 @@
-import { supabase } from '../supabaseClient.js'
+import { supabase } from '../supabaseClient.js';
+import { verificacion } from '../seguridad.js';
 
-    const forms = document.getElementsByClassName('form-actualizar');
-    const mensajeDiv = document.getElementById('mensaje');
+const forms = document.getElementsByClassName('form-actualizar');
 
-    Array.from(forms).forEach(form => {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+Array.from(forms).forEach(form => {
+  const mensajeDiv = form.querySelector('.mensaje');
 
-        const datos = Object.fromEntries(new FormData(form).entries());
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        for (const [key, value] of Object.entries(datos)) {
-            if (!value) {
-                mensajeDiv.textContent = `El campo "${key}" es obligatorio`;
-                return;
-            }
-        }
+    verificacion();
 
-        const { tabla, id, ...campos } = datos;
+    const tabla = form.dataset.tabla;
+    const datos = Object.fromEntries(new FormData(form).entries());
 
-        const { data, error } = await supabase.from(tabla).update(campos).eq('id', id);
-          if (error) {
-            mensajeDiv.textContent = 'Error al actualizar registro: ' + error.message;
-          } else {
-            mensajeDiv.textContent = 'Registro actualizado correctamente!';
-            console.log('Actualizado:', data);
-          }
-      });
-  })
+    // Validar campos vacíos
+    for (const [key, value] of Object.entries(datos)) {
+      if (!value.trim()) {
+        mensajeDiv.textContent = `El campo "${key}" es obligatorio`;
+        return;
+      }
+    }
+
+    // El id es necesario para saber qué registro actualizar
+    const { id, ...campos } = datos;
+    if (!id.trim()) {
+      mensajeDiv.textContent = 'El campo "id" es obligatorio para actualizar';
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from(tabla)
+        .update(campos)
+        .eq('id', id)
+        .select();
+
+      if (error) {
+        mensajeDiv.textContent = 'Error al actualizar registro: ' + error.message;
+      } else {
+        mensajeDiv.textContent = 'Registro actualizado correctamente!';
+        console.log('Actualizado:', data);
+        form.reset();
+      }
+    } catch (error) {
+      mensajeDiv.textContent = 'Error inesperado: ' + error.message;
+    }
+  });
+});

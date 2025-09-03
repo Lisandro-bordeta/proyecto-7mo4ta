@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="form-insertar" data-tabla="marcas">
+        <h3>Marca</h3>
+        <input type="text" name="nombre">
+        <button type="submit">Subir</button>
+        <div class="mensaje"></div>
+    </form>
+
+    <form id="form-select" class="form-insertar" data-tabla="celulares">
+        <h3>Celular</h3>
+        
+        <!-- SELECT para marcas -->
+        <label for="marca">Marca:</label>
+        <select id="marca" name="id_marca" required></select>
+        
+        <!-- Resto de campos -->
+        <input type="text" name="modelo" placeholder="Modelo" required>
+        <input type="text" name="descripcion" placeholder="Descripción" required>
+        <input type="number" name="precio" placeholder="Precio" required>
+        <input type="text" name="imagen" placeholder="URL de imagen" required>
+        <input type="number" name="stock" placeholder="Stock" required>
+        <input type="number" name="envio" placeholder="Envío" required>
+        <input type="number" name="descuento" placeholder="Descuento" required>
+
+        <button type="submit">Subir</button>
+
+        <div class="mensaje"></div>
+    </form>
+    <script type="module" src="../functions/post.functions.js"></script>
+    <script type="module">
+        import { supabase } from '../supabaseClient.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+        const select = document.getElementById("marca");
+
+        const { data: marcas, error } = await supabase
+            .from('marcas')
+            .select('*');
+
+        if (error) {
+            console.error('Error al obtener marcas:', error.message);
+            return;
+        }
+
+        marcas.forEach(marca => {
+            const option = document.createElement('option');
+            option.value = marca.id;
+            option.textContent = marca.nombre;
+            select.appendChild(option);
+        });
+        });
+    </script>
+</body>
+</html>
