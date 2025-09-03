@@ -7,8 +7,8 @@
 </head>
 <body>
     <form>
-        <input type="text">
-        <input type="text">
+        <input type="text" name="ubicacion">
+        <input type="text" name="id usuario">
         <input type="text">
         <select name="" id="">
             <option value="">neto</option>
@@ -16,5 +16,13 @@
         </select>
         <button type="submit"></button>
     </form>
+    <script src="../functions/carrito.functions.js"></script>
 </body>
 </html>
+
+/*
+const { data: { user }, error } = await supabase.auth.getUser();
+
+if (user) {
+  console.log('User ID:', user.id);
+}*/
