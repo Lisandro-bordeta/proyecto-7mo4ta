@@ -7,11 +7,24 @@
 </head>
 <body>
     <form class="form-registro">
+        <h3>Crear usuario</h3>
         <input type="text" name="email">
         <input type="text" name="password">
         <button type="submit">enviar</button>
         <div class="mensaje"></div>
     </form>
+    <form class="form-login">
+        <h3>Logearse</h3>
+        <input type="text" name="email">
+        <input type="text" name="password">
+        <button type="submit">enviar</button>
+        <div class="mensaje"></div>
+    </form>
+    <hr>
+    <button class="btn-logout">Cerrar secion</button>
+
     <script type="module" src="../functions/singUp.functions.js"></script>
+    <script type="module" src="../functions/singIn.functions.js"></script>
+    <script type="module" src="../functions/logOut.js"></script>
 </body>
 </html>

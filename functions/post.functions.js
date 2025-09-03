@@ -1,5 +1,5 @@
 import { supabase } from '../supabaseClient.js';
-import { verificacion } from '../seguridad.js';
+import { administrador } from '../seguridad.js';
 
 const forms = document.getElementsByClassName('form-insertar');
 
@@ -8,7 +8,8 @@ Array.from(forms).forEach(form => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    verificacion();
+    const autorizado = await administrador();
+    if (!autorizado) return;
 
     const tabla = e.target.dataset.tabla;
     const datos = Object.fromEntries(new FormData(form).entries());

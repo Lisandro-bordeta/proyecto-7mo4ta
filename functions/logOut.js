@@ -1,4 +1,4 @@
-import { supabase } from '../supabaseClient';
+import { supabase } from '../supabaseClient.js';
 
 const logout = async () => {
   const { error } = await supabase.auth.signOut();
@@ -8,3 +8,10 @@ const logout = async () => {
     console.log('Sesión cerrada correctamente');
   }
 };
+
+document.querySelectorAll('.btn-logout').forEach(e => {
+  e.addEventListener('click', (event) => {
+    event.preventDefault();
+    logout();
+  });
+});

@@ -22,12 +22,14 @@ export async function administrador() {
         .eq('auth_user_id', user.id)
         .single();
 
+        console.log(user.id)
+
     if (error || !data) {
         alert('No se pudo verificar tu rol de usuario');
         return false;
     }
-
-    if (data.tipo_usuario !== 'admin') {
+    console.log(data.tipo)
+    if (data.tipo !== 'admin') {
         alert('Debes ser administrador para realizar esta acción');
         return false;
     }
