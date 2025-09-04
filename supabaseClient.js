@@ -1,6 +1,8 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+// supabaseClient.ts
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 
-const supabaseUrl = "https://pwxpxouatzzxvvvszdnx.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3eHB4b3VhdHp6eHZ2dnN6ZG54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU3OTU3MTAsImV4cCI6MjA3MTM3MTcxMH0.6o7Za904AOi-QwresK-Y1Z-ev83WyV_hjFDcvbOwjTo"
+const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? ""
+const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
+
