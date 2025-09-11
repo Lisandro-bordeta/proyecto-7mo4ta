@@ -1,4 +1,4 @@
-import 'dotenv/config';import { supabase } from '../../supabaseClient.js';
+import { supabase } from '../../supabaseClient.js';
 
 export async function signUp(email, password){
   // Validar campos vacíos
