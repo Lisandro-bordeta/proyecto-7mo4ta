@@ -1,45 +1,53 @@
-import 'dotenv/config';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabaseClient.js';
 
-// Cliente con Service Role Key (⚠️ Solo para backend)
+// Cliente administrador con Service Role Key
 const supabaseAdmin = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-// Cliente con token de usuario (autenticado)
-function createAuthedClient(token) {
-  return createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, {
+async function eliminarCuentaDelUsuario() {
+  // 1. Obtener el token de la sesión actual
+  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+
+  if (sessionError || !session) {
+    console.error('No hay sesión activa o error:', sessionError?.message);
+    return { success: false, message: 'No hay sesión activa' };
+  }
+
+  const token = session.access_token;
+
+  // 2. Crear cliente autenticado con el token
+  const supabaseAuthed = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, {
     global: {
       headers: { Authorization: `Bearer ${token}` },
     },
   });
-}
 
-async function eliminarCuentaDelUsuario(token) {
-  // 1. Obtener información del usuario autenticado
-  const authedClient = createAuthedClient(token);
-  const { data: userData, error: userError } = await authedClient.auth.getUser();
+  // 3. Obtener info del usuario autenticado
+  const { data: userData, error: userError } = await supabaseAuthed.auth.getUser();
 
   if (userError || !userData?.user) {
-    console.error('No se pudo autenticar al usuario:', userError?.message);
-    return;
+    console.error('Error obteniendo usuario:', userError?.message);
+    return { success: false, message: 'No se pudo obtener usuario autenticado' };
   }
 
   const userId = userData.user.id;
 
-  // 2. Eliminar el usuario usando la Service Role Key
-  const { error } = await supabaseAdmin.auth.admin.deleteUser(userId);
+  // 4. Eliminar usuario con la clave admin (service role)
+  const { error: deleteError } = await supabaseAdmin.auth.admin.deleteUser(userId);
 
-  if (error) {
-    console.error('Error al eliminar usuario:', error.message);
-  } else {
-    console.log('✅ Usuario eliminado correctamente:', userId);
+  if (deleteError) {
+    console.error('Error al eliminar usuario:', deleteError.message);
+    return { success: false, message: deleteError.message };
   }
+
+  console.log('Usuario eliminado:', userId);
+  return { success: true, message: 'Usuario eliminado correctamente' };
 }
 
-// ⚠️ Usa el token del usuario autenticado (ej. desde sesión)
-const token = 'PON_AQUÍ_EL_ACCESS_TOKEN_DEL_USUARIO';
-
-eliminarCuentaDelUsuario(token);
+// Ejemplo de uso:
+eliminarCuentaDelUsuario()
+  .then(console.log)
+  .catch(console.error);
 
