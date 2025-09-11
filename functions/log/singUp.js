@@ -1,4 +1,4 @@
-import { supabase } from '../supabaseClient.js';
+import 'dotenv/config';import { supabase } from '../../supabaseClient.js';
 
 export async function signUp(email, password){
   // Validar campos vacíos
@@ -10,20 +10,20 @@ export async function signUp(email, password){
 
   try {
     const { data, error } = await supabase.auth.signUp({
-      email: datos.email,
-      password: datos.password,
+      email: email,
+      password: password,
     });
 
     if (error) return {
       success: false,
-      message: `Error al iniciar secion: ${error.message}`,
+      message: `Error al crear sesión: ${error.message}`,
       data: null,
     }
 
     return {
       success: true,
-      message: `Se inicio secion correctamente`,
-      data: null,
+      message: `Se creo sesión correctamente`,
+      data: data,
     }
   } catch (err) {
     return {
@@ -33,3 +33,7 @@ export async function signUp(email, password){
     };
   }
   }
+
+signUp("moovicelusarg@gmail.com", "contraseña123")
+  .then(respuesta => console.log(respuesta))
+  .catch(err => console.error("Error al crear cuenta:", err));

@@ -1,6 +1,6 @@
 import { supabase } from '../supabaseClient.js';
 
-export async function LogOut(){
+export async function logOut(){
   try{
     const { error } = await supabase.auth.signOut();
     if (error) return {
