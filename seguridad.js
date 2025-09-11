@@ -8,7 +8,7 @@ export async function verificacion(){
     } else return true;
 }
 
-export async function administrador() {
+export async function  () {
     const { data: { user }, error: authError } = await supabase.auth.getUser();
 
     if (authError || !user) {
