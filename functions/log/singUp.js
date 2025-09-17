@@ -34,6 +34,6 @@ export async function signUp(email, password){
   }
   }
 
-signUp("moovicelusarg@gmail.com", "contraseña123")
+signUp("huguitoezequiel8@gmail.com", "contraseña123")
   .then(respuesta => console.log(respuesta))
   .catch(err => console.error("Error al crear cuenta:", err));
