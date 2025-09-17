@@ -9,48 +9,13 @@ export async function postCarrito(datos, carrito = [], user_id) {
     };
   }
 
-  let pedidoId;
   const detallePedido = [];
-
-  const pedido = {
-    ...datos,
-    id_usuario: user_id,
-    fecha: new Date().toISOString(),
-    estado_envio: 'Pendiente',
-    estado_pago: datos.tipo_pago === 'cuotas' ? 'Pendiente' : 'Pagado',
-    costo_envio: 1000,
-  };
-
-  // Insertar el pedido
-  try {
-    const { data: pedidoData, error } = await supabase
-      .from('pedido')
-      .insert([pedido])
-      .select()
-      .single();
-
-    if (error) {
-      return {
-        success: false,
-        message: 'Error al insertar pedido: ' + error.message,
-        data: null,
-      };
-    }
-
-    pedidoId = pedidoData.id;
-  } catch (err) {
-    return {
-      success: false,
-      message: 'Error inesperado al insertar pedido: ' + err.message,
-      data: null,
-    };
-  }
 
   // Obtener todos los productos por ID
   const productoIds = carrito.map(item => item.id_producto);
 
   const { data: productos, error: fetchError } = await supabase
-    .from('celulares') // o 'productos', según sea tu tabla real
+    .from('celulares')
     .select('id, precio, descuento')
     .in('id', productoIds);
 
@@ -78,7 +43,6 @@ export async function postCarrito(datos, carrito = [], user_id) {
     const total = (precio * (1 - descuento / 100)) * item.cantidad;
 
     detallePedido.push({
-      id_pedido: pedidoId,
       id_producto: item.id_producto,
       cantidad: item.cantidad,
       precio,
@@ -87,11 +51,53 @@ export async function postCarrito(datos, carrito = [], user_id) {
     });
   }
 
+  // 👉 Ahora que tenemos todo validado, creamos el pedido
+  const pedido = {
+    ...datos,
+    id_usuario: user_id,
+    fecha: new Date().toISOString(),
+    estado_envio: 'Pendiente',
+    estado_pago: datos.tipo_pago === 'cuotas' ? 'Pendiente' : 'Pagado',
+    costo_envio: 1000,
+  };
+
+  let pedidoId;
+
+  try {
+    const { data: pedidoData, error } = await supabase
+      .from('pedido')
+      .insert([pedido])
+      .select()
+      .single();
+
+    if (error) {
+      return {
+        success: false,
+        message: 'Error al insertar pedido: ' + error.message,
+        data: null,
+      };
+    }
+
+    pedidoId = pedidoData.id;
+  } catch (err) {
+    return {
+      success: false,
+      message: 'Error inesperado al insertar pedido: ' + err.message,
+      data: null,
+    };
+  }
+
+  // Asociar cada detalle al pedidoId recién creado
+  const detallesConPedidoId = detallePedido.map(item => ({
+    ...item,
+    id_pedido: pedidoId,
+  }));
+
   // Insertar todos los detalles del pedido
   try {
     const { error: insertError } = await supabase
       .from('detalle_pedido')
-      .insert(detallePedido);
+      .insert(detallesConPedidoId);
 
     if (insertError) {
       return {
@@ -151,8 +157,8 @@ console.log(
   await postCarrito(
   {
     ubicacion: "Argentina",
-    tipo_pago: "si",
-    cantidad_cuotas: 0,
+    tipo_pago: "cuotas",
+    cantidad_cuotas: 3,
   },
   [
     { 
