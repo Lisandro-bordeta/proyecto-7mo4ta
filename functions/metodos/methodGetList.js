@@ -1,4 +1,4 @@
-import { supabase } from '../supabaseClient.js';
+import { supabase } from '../../supabaseClient.js';
 
 /**
  * Obtiene registros de cualquier tabla usando filtros con coincidencia parcial (ilike).
@@ -7,7 +7,7 @@ import { supabase } from '../supabaseClient.js';
  * @param {String} params.campos - Campos a seleccionar.
  * @returns {Promise<{ success: boolean, message: string, data: any[] | null }>}
  */
-export async function methodGetList({ tabla, filtros = {}, campos = "*"}) {
+export async function methodGetList( tabla, filtros = {}, campos = "*") {
 
   if (!tabla) {
     return {
@@ -62,3 +62,5 @@ export async function methodGetList({ tabla, filtros = {}, campos = "*"}) {
     };
   }
 }
+
+console.log(await methodGetList("celulares"))

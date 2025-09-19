@@ -1,5 +1,8 @@
 import { supabase } from '../../supabaseClient.js';
-
+/**
+ * Sube los datos del carrito del localStorage a la abse de datos.
+ * @returns {Promise<{ success: boolean, message: string, data: any[] | null  }>}
+ */
 export async function postCarrito(datos, carrito = [], user_id) {
   if (!carrito.length) {
     return {
@@ -51,7 +54,7 @@ export async function postCarrito(datos, carrito = [], user_id) {
     });
   }
 
-  // 👉 Ahora que tenemos todo validado, creamos el pedido
+  // Crear el pedido
   const pedido = {
     ...datos,
     id_usuario: user_id,
@@ -87,7 +90,6 @@ export async function postCarrito(datos, carrito = [], user_id) {
     };
   }
 
-  // Asociar cada detalle al pedidoId recién creado
   const detallesConPedidoId = detallePedido.map(item => ({
     ...item,
     id_pedido: pedidoId,

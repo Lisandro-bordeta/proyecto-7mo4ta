@@ -1,4 +1,4 @@
-import { supabase } from '../supabaseClient.js';
+import { supabase } from '../../supabaseClient.js';
 
 /**
  * Modificar registros de la tabla mediante un ID.
@@ -15,8 +15,6 @@ export async function methodPut(tabla, datos){
       data: null,
     };
   }
-
-  // Luego agregar que reciba campos y los modifique solo los que recibio
 
   try {
     const { data, error } = await supabase
@@ -41,7 +39,7 @@ export async function methodPut(tabla, datos){
   } catch (err) {
     return {
       success: false,
-      message: `Error inesperado: ${error.message}`,
+      message: `Error inesperado: ${err.message}`,
       data: null,
     }
   }

@@ -17,11 +17,11 @@
             <form class="mt-4">
                 <div class="form-group mb-4">
                     <label for="email" class="form-label text-white">Email</label>
-                    <input type="email" class="form-control glass-input" id="email" placeholder="E-mail@gmail.com">
+                    <input name="email" type="email" class="form-control glass-input" id="email" placeholder="E-mail@gmail.com">
                 </div>
                 <div class="form-group mb-5">   
                     <label for="password" class="form-label text-white">Password</label>
-                    <input type="password" class="form-control glass-input" id="password">
+                    <input name="password" type="password" class="form-control glass-input" id="password">
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-degrade">Log In</button>
@@ -35,6 +35,17 @@
     </div>
     <footer class="footer">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem molestiae voluptatibus blanditiis qui explicabo aliquam nemo necessitatibus repudiandae, asperiores quis recusandae, architecto atque, aliquid illo mollitia! Mollitia adipisci corrupti praesentium.</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+    <script type="module">
+        import { singIn } from "../functions/log/singIn.js";
+        const form = document.querySelector("form button")
+        form.addEventListener("click",async function(e) {
+            e.preventDefault;
+            const formData = new FormData(form);
+            const data = await singIn(formData.email, formData.password)
+            console.log(data)
+            
+        })
+    </script>
 </body>
 </html>

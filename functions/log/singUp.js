@@ -1,5 +1,11 @@
 import { supabase } from '../../supabaseClient.js';
 
+/**
+ * Crea una nueva cuenta en supabase.
+ * @param {Object} email - Debe incluir un email
+ * @param {Object} password - Debe incluir una contraseña
+ * @returns {Promise<{ success: boolean, message: string, data: any[] | null  }>}
+ */
 export async function signUp(email, password){
   // Validar campos vacíos
   if (!email?.trim() || !password?.trim()) return {
@@ -34,6 +40,4 @@ export async function signUp(email, password){
   }
   }
 
-signUp("huguitoezequiel8@gmail.com", "contraseña123")
-  .then(respuesta => console.log(respuesta))
-  .catch(err => console.error("Error al crear cuenta:", err));
+console.log(await signUp("huguitoezequiel8@gmail.com", "nuevacontra_123"))

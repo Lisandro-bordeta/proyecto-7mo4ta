@@ -1,5 +1,9 @@
 import { supabase } from '../supabaseClient.js';
 
+/**
+ * Elimina el key de la cuenta.
+ * @returns {Promise<{ success: boolean, message: string, data: any[] | null  }>}
+ */
 export async function logOut(){
   try{
     const { error } = await supabase.auth.signOut();

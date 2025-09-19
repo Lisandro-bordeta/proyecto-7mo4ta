@@ -3,7 +3,6 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 // @deno-types="npm:@types/mercadopago"
 import mercadopago from 'npm:mercadopago'
 
-// Configura tu Access Token seguro
 mercadopago.configure({
   access_token: Deno.env.get('MP_ACCESS_TOKEN') || '',
 })
@@ -32,6 +31,7 @@ serve(async (req) => {
         email,
       },
       back_urls: {
+        // Direcciones para los casos
         success: 'https://tusitio.com/success',
         failure: 'https://tusitio.com/failure',
         pending: 'https://tusitio.com/pending',

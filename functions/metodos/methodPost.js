@@ -1,5 +1,10 @@
-import { supabase } from '../supabaseClient.js';
+import { supabase } from '../../supabaseClient.js';
 
+/**
+ * Sube uno o varios registro a supabase.
+ * @param {Object} datos - Debe incluir `tabla` y los campos correspondientes
+ * @returns {Promise<{ success: boolean, message: string, data: any[] | null  }>}
+ */
 export async function methodPost(datos){
   // Validar campos vacíos
   for (const [key, value] of Object.entries(datos)) {

@@ -1,8 +1,13 @@
-import { supabase } from '../supabaseClient.js';
+import { supabase } from '../../supabaseClient.js';
 
+/**
+ * Devuelve un tocken de su cuenta al usuario.
+ * @param {Object} email - Debe incluir un email
+ * @param {Object} password - Debe incluir una contraseña
+ * @returns {Promise<{ success: boolean, message: string, data: any[] | null  }>}
+ */
 export async function singIn(email, password) {
-  // Validar campos vacíos
-  if (!email?.trim() || password?.trim()) {
+  if (!email?.trim() || !password?.trim()) {
     return {
       success: false,
       message: 'Campo vacio.',
@@ -23,7 +28,7 @@ export async function singIn(email, password) {
       }
 
     return {
-      success: false,
+      success: true,
       message: 'Se inicio secion correctamente',
       data: data ?? null,
     }

@@ -1,3 +1,8 @@
+/**
+ * Crea y/o productos al carrito.
+ * @param {Object} producto - Debe tener id del producto y cantidad
+ * @returns {Promise<{ success: boolean, message: string, data: any[] | null  }>}
+ */
 function agregarAlCarritoLocalStorage(producto) {
   const key = 'carrito';
 

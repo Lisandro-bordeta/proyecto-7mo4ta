@@ -1,4 +1,4 @@
-import { supabase } from '../supabaseClient.js';
+import { supabase } from '../../supabaseClient.js';
 
 /**
  * Obtiene un solo registro de una tabla específica mediante su ID.
@@ -6,9 +6,7 @@ import { supabase } from '../supabaseClient.js';
  * @returns {Promise<{ success: boolean, message: string, data: any | null }>}
  */
 
-export async function methodGetById(datos) {
-  const tabla = datos.tabla?.trim();
-  const id = datos.id?.toString().trim();
+export async function methodGetById(tabla, id) {
 
   if (!tabla || !id) {
     return {
@@ -47,3 +45,5 @@ export async function methodGetById(datos) {
     };
   }
 }
+
+console.log(await methodGetById("celulares", "0575d36c-a8db-4992-8e3a-cb4d7a853994"))

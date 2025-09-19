@@ -1,3 +1,7 @@
+/**
+ * Consigue el carrito del localStorage.
+ * @returns {Promise<{ success: boolean, message: string, data: any[] | null }>}
+ */
 function getCarritoLocalStorage() {
   const key = 'carrito';
 
