@@ -8,7 +8,6 @@ import { supabase } from '../../supabaseClient.js';
  * @returns {Promise<{ success: boolean, message: string, data: any[] | null }>}
  */
 export async function methodGetList( tabla, filtros = {}, campos = "*") {
-
   if (!tabla) {
     return {
       success: false,
@@ -18,6 +17,8 @@ export async function methodGetList( tabla, filtros = {}, campos = "*") {
   }
 
   try {
+
+
     // Construir condiciones ilike para los filtros
     const condiciones = Object.entries(filtros)
       .filter(([_, valor]) => valor && valor.toString().trim() !== '')
@@ -38,6 +39,28 @@ export async function methodGetList( tabla, filtros = {}, campos = "*") {
         message: `Error al buscar en tabla "${tabla}": ${error.message}`,
         data: null,
       };
+    }
+    // Si la tabla es "celulares", obtener el nombre de la marca
+    if (tabla === "celulares") {
+      const { data: dataMarca, error: errorMarca } = await supabase.from("marcas").select("*");
+
+      if (errorMarca) {
+        return {
+          success: false,
+          message: `Error al buscar el nombre de la marca para "${tabla}": ${errorMarca.message}`,
+          data: null,
+        };
+      }
+
+      // Agrega el nombre de la marca a cada celular
+      data.forEach(celular => {
+        const marca = dataMarca.find(mar => mar.id === celular.id_marca);
+        if (marca) {
+          celular.nombre_marca = marca.nombre;
+        } else {
+          celular.nombre_marca = "Null";
+        }
+      });
     }
 
     if (!data.length) {

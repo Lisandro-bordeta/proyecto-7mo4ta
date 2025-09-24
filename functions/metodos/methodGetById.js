@@ -31,6 +31,27 @@ export async function methodGetById(tabla, id) {
       };
     }
 
+    // Si la tabla es "celulares", obtener el nombre de la marca
+    if (tabla === "celulares") {
+      const { data: dataMarca, error: errorMarca } = await supabase.from("marcas").select("*");
+
+      if (errorMarca) {
+        return {
+          success: false,
+          message: `Error al buscar marcas para "${tabla}": ${errorMarca.message}`,
+          data: null,
+        };
+      }
+
+    // Agrega el nombre de la marca a cada celular
+      const marca = dataMarca.find(mar => mar.id === data.id_marca);
+      if (marca) {
+        data.nombre_marca = marca.nombre;
+      } else {
+        data.nombre_marca = "Null";
+      }
+    }
+
     return {
       success: true,
       message: `Registro encontrado correctamente en la tabla "${tabla}".`,
