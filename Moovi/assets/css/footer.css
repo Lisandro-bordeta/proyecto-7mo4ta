@@ -1,0 +1,32 @@
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            display: flex; /* Usamos flexbox para las columnas */
+            justify-content: space-around;
+            flex-wrap: wrap; /* Permite que las columnas se apilen en móviles */
+        }
+        footer section {
+            flex: 1;
+            min-width: 200px; /* Asegura que no se hagan muy pequeñas */
+            margin: 10px;
+        }
+        footer h4 {
+            color: #ddd;
+            border-bottom: 1px solid #555;
+            padding-bottom: 5px;
+        }
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .copyright {
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid #555;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-size: 0.8em;
+        }
