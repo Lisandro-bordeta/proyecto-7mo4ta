@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/animaciones.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <style>
     </style>
+ 
 </head>
 <body>
     <!-- Partículas -->
@@ -73,11 +75,67 @@
             </div>
         </div>
     </div>
+    <footer>
 
+        <section class="legal-info">
+            <h4>Información Legal</h4>
+            <nav>
+                <a href="/politica-privacidad">Política de Privacidad</a>
+                <a href="/terminos-condiciones">Términos y Condiciones</a>
+                <a href="/politica-cookies">Política de Cookies</a>
+                <div class="trust-badges" style="margin-top: 10px;">
+                    <p style="font-size: 0.9em;">Pagos Seguros</p>
+                </div>
+            </nav>
+        </section>
+
+        <section class="quick-links">
+            <h4>Enlaces Rápidos</h4>
+            <nav aria-label="Navegación secundaria">
+                <a href="/sobre-nosotros">Sobre Nosotros</a>
+                <a href="/contacto">Contacto</a>
+                <a href="/faq">Preguntas Frecuentes</a>
+                <a href="/blog">Blog</a>
+            </nav>
+            <div class="contact-details" style="margin-top: 15px;">
+                <h4>Contáctanos</h4>
+                <p>Email: <a href="mailto:info@tuempresa.com" style="display: inline;">info@tuempresa.com</a></p>
+                <p>Tel: (555) 123-4567</p>
+            </div>
+        </section>
+
+        <section class="social-cta">
+            <h4>Síguenos</h4>
+            <div class="social-icons">
+                <p id="subT">github</p>|
+                <a href="https://github.com/Lisandro-bordeta" target="_blank">Lisandro-bordeta</a> 
+                <a href="https://github.com/ProgrmadorMeh" target="_blank">Hugo-medina</a>
+                <a href="https://github.com/fed-ean" target="_blank">Fede-nuñez</a>
+                |
+                <a href="https://instagram.com/tuempresa" target="_blank">Instagram</a> |
+                <a href="https://linkedin.com/company/tuempresa" target="_blank">LinkedIn</a>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <h4>Newsletter</h4>
+                <form action="/subscribe" method="POST">
+                    <input type="email" placeholder="Tu correo electrónico" required style="padding: 5px;">
+                    <button type="submit" style="padding: 5px; margin-top: 5px;">Suscribirse</button>
+                </form>
+            </div>
+        </section>
+        
+        <div class="copyright">
+            <img src="/logo-simple.png" alt="Logo de la Empresa" height="30" style="vertical-align: middle; margin-right: 10px;">
+            <p>&copy; 2025 Nombre de la Empresa. Todos los derechos reservados.</p>
+        </div>
+
+    </footer>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
     <script src="assets/js/animaciones.js"></script>
     <script src="assets/js/main.js"></script>
+    
 </body>
 </html>
