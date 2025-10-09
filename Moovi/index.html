@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celulares - Celus Argentina</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animaciones.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <style>
+    </style>
+ 
+</head>
+<body>
+    <!-- Partículas -->
+    <div id="tsparticles"></div>
+
+    <div class="container-fluid" style="min-height: 100vh;">
+        <div class="d-flex justify-content-between align-items-center p-3" style="background: linear-gradient(to right, #8823C2, #A6317B);">
+            <h4 class="m-0 text-white">Celus Argentina</h4>
+            <div>
+                <a href="carrito.html" class="text-white me-3"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                <span class="badge bg-danger rounded-pill">3</span>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-around p-3">
+            <button class="btn btn-marca">MOTO</button>
+            <button class="btn btn-marca">APPLE</button>
+            <button class="btn btn-marca">SAMSUNG</button>
+            <button class="btn btn-marca">HUAWEI</button>
+        </div>
+
+        <div class="row m-0 p-3">
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="filter-box">
+                    <h5 class="text-white">Filtros</h5>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="envio-gratis">
+                        <label class="form-check-label text-white" for="envio-gratis">Envio gratis</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="llega-hoy">
+                        <label class="form-check-label text-white" for="llega-hoy">Llega hoy</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-9">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                        <a href="producto.html" class="text-decoration-none">
+                            <div class="card card-product">
+                                <div class="row g-0">
+                                    <div class="col-4 d-flex justify-content-center align-items-center p-3">
+                                        <img src="https://via.placeholder.com/100x150.png?text=Celular" class="img-fluid" alt="Celular">
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem fideos guiso</h5>
+                                            <p class="card-text">$4000</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <button class="btn btn-comprar">COMPRAR</button>
+                                                <i class="far fa-bookmark fa-2x text-white-50"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+        <section class="legal-info">
+            <h4>Información Legal</h4>
+            <nav>
+                <a href="/politica-privacidad">Política de Privacidad</a>
+                <a href="/terminos-condiciones">Términos y Condiciones</a>
+                <a href="/politica-cookies">Política de Cookies</a>
+                <div class="trust-badges" style="margin-top: 10px;">
+                    <p style="font-size: 0.9em;">Pagos Seguros</p>
+                </div>
+            </nav>
+        </section>
+
+        <section class="quick-links">
+            <h4>Enlaces Rápidos</h4>
+            <nav aria-label="Navegación secundaria">
+                <a href="/sobre-nosotros">Sobre Nosotros</a>
+                <a href="/contacto">Contacto</a>
+                <a href="/faq">Preguntas Frecuentes</a>
+                <a href="/blog">Blog</a>
+            </nav>
+            <div class="contact-details" style="margin-top: 15px;">
+                <h4>Contáctanos</h4>
+                <p>Email: <a href="mailto:info@tuempresa.com" style="display: inline;">info@tuempresa.com</a></p>
+                <p>Tel: (555) 123-4567</p>
+            </div>
+        </section>
+
+        <section class="social-cta">
+            <h4>Síguenos</h4>
+            <div class="social-icons">
+                <p id="subT">github</p>|
+                <a href="https://github.com/Lisandro-bordeta" target="_blank">Lisandro-bordeta</a> 
+                <a href="https://github.com/ProgrmadorMeh" target="_blank">Hugo-medina</a>
+                <a href="https://github.com/fed-ean" target="_blank">Fede-nuñez</a>
+                |
+                <a href="https://instagram.com/tuempresa" target="_blank">Instagram</a> |
+                <a href="https://linkedin.com/company/tuempresa" target="_blank">LinkedIn</a>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <h4>Newsletter</h4>
+                <form action="/subscribe" method="POST">
+                    <input type="email" placeholder="Tu correo electrónico" required style="padding: 5px;">
+                    <button type="submit" style="padding: 5px; margin-top: 5px;">Suscribirse</button>
+                </form>
+            </div>
+        </section>
+        
+        <div class="copyright">
+            <img src="/logo-simple.png" alt="Logo de la Empresa" height="30" style="vertical-align: middle; margin-right: 10px;">
+            <p>&copy; 2025 Nombre de la Empresa. Todos los derechos reservados.</p>
+        </div>
+
+    </footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="assets/js/animaciones.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+</body>
+</html>
