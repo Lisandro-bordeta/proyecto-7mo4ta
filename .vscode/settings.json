@@ -1,0 +1,15 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/proyecto 7mo4ta": true,
+        "proyecto 7mo4ta": true,
+        "**/node_modules": true,
+        "node_modules": true,
+        "README.md": true,
+    },
+    "explorerExclude.backup": {}
+}

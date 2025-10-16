@@ -1,0 +1,34 @@
+{
+  "placeholderImages": [
+    {
+      "id": "iphone-15-pro",
+      "description": "An iPhone 15 Pro in Titan Blue.",
+      "imageUrl": "https://picsum.photos/seed/iphone15/400/400",
+      "imageHint": "smartphone apple"
+    },
+    {
+      "id": "galaxy-s24-ultra",
+      "description": "A Samsung Galaxy S24 Ultra in Gray.",
+      "imageUrl": "https://picsum.photos/seed/galaxys24/400/400",
+      "imageHint": "smartphone samsung"
+    },
+    {
+      "id": "pixel-8-pro",
+      "description": "A Google Pixel 8 Pro in Obsidian Black.",
+      "imageUrl": "https://picsum.photos/seed/pixel8/400/400",
+      "imageHint": "smartphone google"
+    },
+    {
+      "id": "xiaomi-13t",
+      "description": "A Xiaomi 13T in Alpine Blue.",
+      "imageUrl": "https://picsum.photos/seed/xiaomi13/400/400",
+      "imageHint": "smartphone xiaomi"
+    },
+    {
+      "id": "motorola-edge-40",
+      "description": "A Motorola Edge 40 in Nebula Green.",
+      "imageUrl": "https://picsum.photos/seed/motoedge40/400/400",
+      "imageHint": "smartphone motorola"
+    }
+  ]
+}
