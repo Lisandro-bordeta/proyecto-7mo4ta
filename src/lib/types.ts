@@ -8,7 +8,7 @@ export type Product = {
   salePrice: number;
   stock: number;
   description?: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
   lastUpdate: string;
   imei?: string;
 };

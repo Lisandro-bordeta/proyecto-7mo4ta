@@ -52,8 +52,30 @@ export async function methodPost(datos, tabla) {
       }
       datos.id_brand = marcaId;
       delete datos.brand; // Eliminar campo innecesario
-    }
 
+      const file = datos.file
+      if (file){
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${crypto.randomUUID()}.${fileExt}`;
+        const filePath = `productos/${fileName}`;
+
+        const { data, error } = await supabase.storage
+          .from("imagenes")
+          .upload(filePath, file);
+        if (error) {
+          return {
+            success: false,
+            message: `Error al subir imagen al storage: ${error.message}`,
+            data: null,
+          };
+        }
+
+        const { data: publicUrlData } = supabase.storage
+          .from("imagenes")
+          .getPublicUrl(filePath);
+        datos.imageUrl = publicUrlData.publicUrl;
+      }
+    }
     // Insertar en la tabla original
     const { data, error } = await supabase
       .from(tabla)

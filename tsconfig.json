@@ -23,6 +23,6 @@
       "@lib/*": ["./src/lib/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/supabaseServer.js", "src/lib/supabaseClient.js", "src/lib/functions/metodos/methodGetList.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/supabaseServer.js", "src/lib/supabaseClient.js", "src/lib/functions/metodos/methodGetList.js", "src/app/api/mercadoPago/route.js"],
   "exclude": ["node_modules"]
 }

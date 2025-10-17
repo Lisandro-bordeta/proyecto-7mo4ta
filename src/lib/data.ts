@@ -1,80 +1,12 @@
 import type { Product, Sale, User } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { methodGetList } from '@lib/functions/metodos/methodGetList'
 
-export const products: Product[] = [
-  {
-    id: '1',
-    brand: 'Apple',
-    model: 'iPhone 15 Pro',
-    capacity: '256GB',
-    color: 'Azul Titán',
-    costPrice: 999,
-    salePrice: 1299,
-    stock: 15,
-    lastUpdate: '2024-05-20',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'iphone-15-pro')?.imageUrl,
-  },
-  {
-    id: '2',
-    brand: 'Samsung',
-    model: 'Galaxy S24',
-    capacity: '256GB',
-    color: 'Gris',
-    costPrice: 899,
-    salePrice: 1099,
-    stock: 25,
-    lastUpdate: '2024-05-18',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'galaxy-s24-ultra')?.imageUrl,
-  },
-  {
-    id: '3',
-    brand: 'Google',
-    model: 'Pixel 8 Pro',
-    capacity: '128GB',
-    color: 'Negro Obsidiana',
-    costPrice: 799,
-    salePrice: 999,
-    stock: 8,
-    lastUpdate: '2024-05-21',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'pixel-8-pro')?.imageUrl,
-  },
-  {
-    id: '4',
-    brand: 'Xiaomi',
-    model: '13T Pro',
-    capacity: '512GB',
-    color: 'Azul Alpino',
-    costPrice: 650,
-    salePrice: 799,
-    stock: 3,
-    lastUpdate: '2024-05-15',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'xiaomi-13t')?.imageUrl,
-  },
-  {
-    id: '5',
-    brand: 'Motorola',
-    model: 'Edge 40',
-    capacity: '256GB',
-    color: 'Verde Nebula',
-    costPrice: 400,
-    salePrice: 550,
-    stock: 30,
-    lastUpdate: '2024-05-19',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'motorola-edge-40')?.imageUrl,
-  },
-  {
-    id: '6',
-    brand: 'Apple',
-    model: 'iPhone 15',
-    capacity: '128GB',
-    color: 'Negro Medianoche',
-    costPrice: 799,
-    salePrice: 999,
-    stock: 0,
-    lastUpdate: '2024-05-10',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'iphone-15-pro')?.imageUrl,
-  },
-];
+const resp = await methodGetList("celulares");
+const celulares = resp.data;
+console.log(resp.message);
+export const products: Product[] = celulares ?? [];
+
 
 export const sales: Sale[] = [
   { id: 'V-001', date: '2024-05-21', product: { model: 'iPhone 15 Pro' }, quantity: 1, totalPrice: 1299, salesperson: 'Ana López', paymentStatus: 'Pagado', paymentMethod: 'Tarjeta Crédito' },

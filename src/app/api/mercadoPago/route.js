@@ -1,6 +1,6 @@
 const accessToken = process.env.MP_ACCESS_TOKEN;
 
-export async function POST(req: NextRequest) {
+export async function POST(req) {
   if (req.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Método no permitido' }), {
       status: 405,

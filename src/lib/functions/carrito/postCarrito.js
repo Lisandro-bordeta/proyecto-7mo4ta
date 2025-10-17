@@ -3,7 +3,7 @@ import { supabase } from '../../supabaseClient.js';
  * Sube los datos del carrito del localStorage a la abse de datos.
  * @returns {Promise<{ success: boolean, message: string, data: any[] | null  }>}
  */
-export async function postCarrito(datos, carrito = []) {
+export async function postCarrito(carrito = []) {
   if (!carrito.length) {
     return {
       success: false,
@@ -20,20 +20,18 @@ export async function postCarrito(datos, carrito = []) {
       data: null,
     };
   }
-
   const user_id = user.id;
   
 
   const detallePedido = [];
 
   // Obtener todos los productos por ID
-  const productoIds = carrito.map(item => item.id_producto);
+  const productoIds = carrito.map(item => item.id); // Ver como se llama el id en el carrito
 
   const { data: productos, error: fetchError } = await supabase
     .from('celulares')
-    .select('id, precio, descuento')
+    .select('*')
     .in('id', productoIds);
-
   if (fetchError) {
     return {
       success: false,
@@ -43,9 +41,8 @@ export async function postCarrito(datos, carrito = []) {
   }
 
   // Crear los detalles del pedido con datos reales
-  for (const item of carrito) {
+  for (const item of productos) {
     const producto = productos.find(p => p.id === item.id_producto);
-
     if (!producto) {
       return {
         success: false,
@@ -54,15 +51,11 @@ export async function postCarrito(datos, carrito = []) {
       };
     }
 
-    const { precio, descuento = 0 } = producto;
-    const total = (precio * (1 - descuento / 100)) * item.cantidad;
-
-    detallePedido.push({
-      id_producto: item.id_producto,
+    detallePedido.push({ // VER COMO SE LLAMAN LAS VARIABLES EN EL CARRITO
+      id_producto: item.id,
       cantidad: item.cantidad,
-      precio,
-      descuento,
-      total,
+      precio: item.costPrice,
+      total: item.cantidad * costPrice,
     });
   }
 
@@ -165,21 +158,3 @@ export async function postCarrito(datos, carrito = []) {
     };
   }
 }
-
-
-console.log(
-  await postCarrito(
-  {
-    ubicacion: "Argentina",
-    tipo_pago: "cuotas",
-    cantidad_cuotas: 3,
-  },
-  [
-    { 
-    id_producto: "2f3e0bfa-d33f-4e4b-a38c-a7a9031aa847",
-    cantidad: 3,
-    }
-  ],
-  "65fe76fb-724e-48ae-8cf0-4dacdd84539c"
-)
-)
