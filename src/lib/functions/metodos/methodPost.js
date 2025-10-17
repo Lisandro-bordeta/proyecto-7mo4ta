@@ -71,7 +71,7 @@ export async function methodPost(datos, tabla) {
         }
 
         const { data: publicUrlData } = supabase.storage
-          .from("imagenes")
+          .from("cellimagen")
           .getPublicUrl(filePath);
         datos.imageUrl = publicUrlData.publicUrl;
       }

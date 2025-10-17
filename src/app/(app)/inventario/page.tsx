@@ -75,14 +75,13 @@ export default function InventoryPage() {
               {products.map((product: Product) => (
                 <TableRow key={product.id}>
                   <TableCell className="hidden sm:table-cell">
-                    <Image
-                      alt={`Imagen de ${product.model}`}
-                      className="aspect-square rounded-md object-cover"
-                      height="64"
-                      src={product.imageUrl || 'https://picsum.photos/seed/placeholder/64/64'}
-                      width="64"
-                      data-ai-hint="smartphone"
-                    />
+                  <Image
+                    src={product.imageUrl ?? "https://pwxpxouatzzxvvvszdnx.supabase.co/storage/v1/object/public/celImagen/place.jpg"}
+                    alt={`Imagen de ${product.model}`}
+                    className="aspect-square rounded-md object-cover"
+                    height="64"
+                    width="64"
+                  />
                   </TableCell>
                   <TableCell className="font-medium">
                     {product.brand} {product.model}

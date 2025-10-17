@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device‑width, initial-scale=1.0" />
+  <title>Probar POST</title>
+</head>
+<body>
+  <h1>Probar POST hacia Next.js</h1>
+
+  <form id="testForm">
+    <h2>Datos del carrito</h2>
+    <div>
+      <label>
+        Nombre del producto:
+        <input type="text" name="nombre" value="Mi Producto" />
+      </label>
+    </div>
+    <div>
+      <label>
+        Cantidad:
+        <input type="number" name="cantidad" value="2" />
+      </label>
+    </div>
+    <div>
+      <label>
+        Precio unitario:
+        <input type="number" name="precio" value="500" step="0.01" />
+      </label>
+    </div>
+    <div>
+      <label>
+        Email del comprador:
+        <input type="email" name="email" value="cliente@ejemplo.com" />
+      </label>
+    </div>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <pre id="resultado"></pre>
+
+  <script>
+    const form = document.getElementById('testForm')
+    const output = document.getElementById('resultado')
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+
+      // Crear el objeto carrito como lo espera tu función POST de Next.js
+      const formData = new FormData(form)
+      const carrito = [{
+        nombre: formData.get('nombre'),
+        cantidad: parseInt(formData.get('cantidad'), 10),
+        precio: parseFloat(formData.get('precio'))
+      }]
+      const email = formData.get('email')
+
+      const body = { carrito, email }
+
+      try {
+        const res = await fetch('/api/mercadoPago', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body),
+        })
+
+        const data = await res.json()
+        output.textContent = JSON.stringify({
+          status: res.status,
+          response: data
+        }, null, 2)
+
+        
+    // después de recibir la respuesta del fetch
+    if (data.success && data.init_point) {
+      window.location.href = data.init_point
+    } else {
+      // mostrar error o manejar
+    }
+      } catch (err) {
+        console.error('Error en fetch:', err)
+        output.textContent = 'Error en la petición: ' + err.message
+      }
+    })
+
+  </script>
+</body>
+</html>
