@@ -85,5 +85,3 @@ export async function methodGetList( tabla, filtros = {}, campos = "*") {
     };
   }
 }
-
-console.log(await methodGetList("celulares"))

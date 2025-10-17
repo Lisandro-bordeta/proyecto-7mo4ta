@@ -23,6 +23,6 @@
       "@lib/*": ["./src/lib/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/supabaseServer.js", "src/lib/supabaseClient.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/supabaseServer.js", "src/lib/supabaseClient.js", "src/lib/functions/metodos/methodGetList.js"],
   "exclude": ["node_modules"]
 }
