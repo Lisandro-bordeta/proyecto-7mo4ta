@@ -1,0 +1,115 @@
+/* styles/Checkout.module.css */
+
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.checkoutContainer {
+    max-width: 1000px;
+    margin: 40px auto;
+    display: flex;
+    gap: 30px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mainContent {
+    flex: 2;
+}
+
+.sidebar {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    height: fit-content;
+}
+
+.sectionTitle {
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilos del formulario */
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.formGroup input, .formGroup select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btnConfirm {
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.btnConfirm:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos del resumen del carrito */
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.cartItem:last-child {
+    border-bottom: none;
+}
+
+.itemDetails span {
+    display: block;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.totalsRow {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-top: 5px;
+    border-top: 1px solid #ddd;
+}
+
+.totalFinal {
+    font-size: 1.2em;
+    color: #d9534f;
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 768px) {
+    .checkoutContainer {
+        flex-direction: column;
+    }
+}
