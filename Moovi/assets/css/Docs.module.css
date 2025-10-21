@@ -1,0 +1,50 @@
+/* styles/Docs.module.css */
+
+/* Estilos de Contenedor General (simula el body) */
+.pageContainer {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    padding: 0 20px;
+}
+
+/* Estilos de Títulos */
+.title {
+    color: #333;
+}
+
+/* Estilos de Sección (separador) */
+.section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Estilos específicos para FAQ */
+.faqSection {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.questionItem {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.questionItem h3 {
+    color: #0056b3; /* Color que destaca la pregunta */
+    margin-top: 0;
+    cursor: pointer;
+}
+
+.questionItemContent {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 50px;
+}
