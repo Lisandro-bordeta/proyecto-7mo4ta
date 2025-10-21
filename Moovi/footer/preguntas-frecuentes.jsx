@@ -1,8 +1,8 @@
+// components/FAQSection.jsx
 import React from 'react';
-// Es una buena práctica importar un archivo CSS para manejar los estilos complejos
-// import './FAQSection.css'; 
+import styles from '../styles/Docs.module.css'; // Importamos el CSS Module
 
-// --- Datos de las Preguntas (Manejado en React como un array de objetos) ---
+// --- Datos de las Preguntas (Manteniendo la estructura original) ---
 const faqData = [
     {
         id: 1,
@@ -50,64 +50,23 @@ const faqData = [
 
 
 const FAQSection = () => {
-    // Definimos los estilos inline convertidos del CSS original.
-    // NOTA: En un proyecto real, se usaría un archivo CSS para esto.
-    const styles = {
-        body: { // Aplicado al contenedor principal
-            fontFamily: 'Arial, sans-serif',
-            lineHeight: 1.6,
-            margin: '20px',
-            color: '#333',
-        },
-        header: {
-            textAlign: 'center',
-            marginBottom: '40px',
-        },
-        faqSection: {
-            maxWidth: '800px',
-            margin: '0 auto',
-        },
-        questionItem: {
-            marginBottom: '25px',
-            padding: '15px',
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-        },
-        questionItemH3: {
-            color: '#0056b3', // Un color que destaque la pregunta
-            marginTop: 0,
-            cursor: 'pointer',
-        },
-        questionItemP: {
-            marginTop: '10px',
-            paddingLeft: '20px',
-        }
-    };
-
-
     return (
-        <div style={styles.body}>
+        <div className={styles.pageContainer}>
 
-            <header style={styles.header}>
-                <h1>Preguntas Frecuentes (FAQ) 🙋‍♀️</h1>
+            <header style={{ textAlign: 'center', marginBottom: '40px' }}>
+                <h1 className={styles.title}>Preguntas Frecuentes (FAQ) 🙋‍♀️</h1>
                 <p>Encuentra respuestas rápidas a tus dudas más comunes sobre pagos, pedidos y envíos.</p>
             </header>
 
-            <div className="faq-section" style={styles.faqSection}>
+            <div className={styles.faqSection}>
                 
-                {/* Usamos el método .map() para iterar sobre el array faqData 
-                  y crear un componente <div className="question-item"> por cada elemento.
-                */}
                 {faqData.map(item => (
-                    // React requiere una 'key' única para cada elemento en un .map()
-                    <div className="question-item" style={styles.questionItem} key={item.id}>
-                        <h3 style={styles.questionItemH3}>
+                    // Aplicamos clases CSS Module para el ítem y su contenido
+                    <div className={styles.questionItem} key={item.id}>
+                        <h3 className={styles.title} className={styles.questionItemH3}>
                             {item.question}
                         </h3>
-                        {/* Aquí se renderiza el contenido de la respuesta (answer).
-                          En el HTML original, esto sería el contenido dentro de la pregunta.
-                        */}
-                        <div style={styles.questionItemP}>
+                        <div className={styles.questionItemContent}>
                             {item.answer}
                         </div>
                     </div>
@@ -115,8 +74,8 @@ const FAQSection = () => {
 
             </div>
 
-            <footer>
-                <p style={{ textAlign: 'center', marginTop: '50px' }}>
+            <footer className={styles.footer}>
+                <p>
                     ¿Aún tienes dudas? No hay problema. Contáctanos a través de nuestro formulario de 
                     <a href="/contacto"> Contacto</a>.
                 </p>
@@ -127,5 +86,3 @@ const FAQSection = () => {
 };
 
 export default FAQSection;
-
-// Nota Adicional: Para hacer esto un acordeón (interactivo), necesitarías usar el Hook useState.
