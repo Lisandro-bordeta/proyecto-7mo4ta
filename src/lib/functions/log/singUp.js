@@ -2,41 +2,31 @@ import { supabase } from '../../supabaseClient.js';
 
 /**
  * Crea una nueva cuenta en supabase.
- * @param {Object} email - Debe incluir un email
- * @param {Object} password - Debe incluir una contraseña
- * @param {Object} displayName - Debe incluir un nombre publico
+ * @param {Object} data_user - Los datos del nuevo usuario.
  * @returns {Promise<{ success: boolean, message: string, data: any[] | null  }>}
  */
-export async function singUp(email, password, displayName){
-  // Validar campos vacíos
-  if (!email?.trim() || !password?.trim() || !displayName?.trim()) return {
-      success: false,
-      message: `Campo vacio`,
-      data: null,
-    };
-
-  try {
-    const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          data: {
-            displayName: displayName,
-          }
-        }
+export async function singUp(data_user){
+  try{
+    const { data, error } = await supabase.rpc('create_user', {
+      email: data_user.email,
+      password: data_user.password,
+      display_name: data_user.display_name,
+      image_url: data_user.image_url,
+      rol: data_user.rol
     });
-
-    if (error) return {
-      success: false,
-      message: `Error al crear sesión: ${error.message}`,
-      data: null,
+  
+    if (error) {
+      return {
+        success: false,
+        message: `Error al crear el usuario: ${error}`,
+        data: null,
+      };
     }
-
     return {
       success: true,
-      message: `Se creo sesión correctamente`,
+      message: 'Cuenta creada.',
       data: data,
-    }
+    };
   } catch (err) {
     return {
       success: false,
@@ -44,4 +34,4 @@ export async function singUp(email, password, displayName){
       data: null,
     };
   }
-  }
+}

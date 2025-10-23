@@ -1,8 +1,10 @@
 import type { Product, Sale, User } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { methodGetList } from '@lib/functions/metodos/methodGetList'
+import { methodGetListAuth } from '@lib/functions/metodos/methodGetListAuth'
+let resp: any;
 
-const resp = await methodGetList("celulares");
+resp = await methodGetList("celulares");
 const celulares = resp.data;
 console.log(resp.message);
 export const products: Product[] = celulares ?? [];
@@ -17,7 +19,11 @@ export const sales: Sale[] = [
   { id: 'V-006', date: '2024-05-17', product: { model: '13T Pro' }, quantity: 1, totalPrice: 799, salesperson: 'Ana López', paymentStatus: 'Pagado', paymentMethod: 'Efectivo' },
 ];
 
-export const users: User[] = [
+resp = await methodGetList("celulares");
+const usuarios = resp.data;
+console.log(resp.message);
+export const users: User[] =  usuarios ?? [];
+[
     { id: 'USR-001', name: 'Ana López', email: 'ana.lopez@moovi.com', role: 'Admin', lastAccess: '2024-05-21 10:30', avatarUrl: 'https://picsum.photos/seed/ana/40/40' },
     { id: 'USR-002', name: 'Carlos Ruiz', email: 'carlos.ruiz@moovi.com', role: 'Vendedor', lastAccess: '2024-05-21 09:15', avatarUrl: 'https://picsum.photos/seed/carlos/40/40' },
     { id: 'USR-003', name: 'Laura Marín', email: 'laura.marin@moovi.com', role: 'Vendedor', lastAccess: '2024-05-20 18:45', avatarUrl: 'https://picsum.photos/seed/laura/40/40' },

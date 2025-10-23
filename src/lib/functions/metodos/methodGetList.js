@@ -63,6 +63,12 @@ export async function methodGetList( tabla, filtros = {}, campos = "*") {
       });
     }
 
+    if (tabla === "usuarios") {
+      // Agrega imagen y rol
+      const { data: dataMarca, error: errorMarca } = await supabase.from("user").select("*");
+      
+    }
+
     if (!data.length) {
       return {
         success: true,

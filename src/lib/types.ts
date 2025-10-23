@@ -30,6 +30,6 @@ export type User = {
   name: string;
   email: string;
   role: 'Admin' | 'Vendedor';
-  lastAccess: string;
+  last_sign_in_at: string;
   avatarUrl?: string;
 };
